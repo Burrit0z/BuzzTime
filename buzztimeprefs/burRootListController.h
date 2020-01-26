@@ -8,7 +8,5 @@
 #import <Cephei/HBRespringController.h>
 #import <Cephei/HBPreferences.h>
 
-#import "burinstructionManual.h"
-
-@interface burRootListController : PSListController
+@interface burRootListController : HBRootListController
 @end

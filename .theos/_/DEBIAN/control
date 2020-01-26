@@ -1,0 +1,10 @@
+Package: com.burritoz.buzztime
+Name: BuzzTime
+Depends: mobilesubstrate, ws.hbang.common (>= 1.13)
+Architecture: iphoneos-arm
+Description: Ever wanted to check the time, but either (a) don't have a watch, or (b) are in a situation where it would be socially awkward to do so? Don't worry, here's a solution! You can have your phone tell you the time by vibrating! iPhone 7 and Up. A long vibration means a value of 5 for the current digit, and a shorter one means 1. Add them up in your head, then you have a digit of the time. (It goes through all of them, though, duh.)
+Maintainer: burrit0z
+Author: burrit0z
+Section: Tweaks
+Version: 1.0~rc1-3+debug
+Installed-Size: 400
