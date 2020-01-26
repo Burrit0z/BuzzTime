@@ -165,48 +165,23 @@ void resetVariables() {
 }
 #pragma mark DRM
 
-%hook SBCoverSheetPrimarySlidingViewController
-- (void)viewDidDisappear:(BOOL)arg1 {
-
-    %orig; //  Thanks to Nepeta for the DRM
-    if (!dpkgInvalid) return;
-		UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Pirate Detected!"
-		message:@"Seriously? Pirating a free Tweak is awful!\nPiracy repo's Tweaks could contain Malware, so if you didn't know that, so go ahead and get BuzzTime from the official Source https://Burrit0z.github.io/repo/.\nIf you're seeing this but you got it from the official source, reinstall this package."
-		preferredStyle:UIAlertControllerStyleAlert];
-
-		UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Aww man" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * action) {
-
-			UIApplication *application = [UIApplication sharedApplication];
-			[application openURL:[NSURL URLWithString:@"https://Burrit0z.github.io/repo"] options:@{} completionHandler:nil];
-
-	}];
-    [alertController addAction:cancelAction];
-		[self presentViewController:alertController animated:YES completion:nil];
-
-}
-
-%end
-
-#pragma mark gesture_Handling
 %hook SpringBoard
 -(BOOL)_handlePhysicalButtonEvent:(UIPressesEvent *)event {
 	  SBCoverSheetPresentationManager *lockManager = (SBCoverSheetPresentationManager *)[%c(SBCoverSheetPresentationManager) sharedInstance]; //exoticswingset's method, thx!
 
-		if (![lockManager hasBeenDismissedSinceKeybagLock]) {
+		if ((![lockManager hasBeenDismissedSinceKeybagLock]) && tweakEnabled) {
 	    for(UIPress *press in event.allPresses.allObjects) {
 
 //General activation method
-        if (activationMethod != 0) {
-		      if (press.type == activationMethod && press.force == 1) { //pressed
-						buttonPressCountActivator ++;
-						stoppedActivator = NO; //this is for each individual press
-						if (buttonPressCountActivator == 1) {
-							//This is a 0.4 second delay because it takes a bit to activate Accessibility shortcut
-							longPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(activateAll) userInfo:nil repeats:NO];
-						}
-					} else if (press.type == activationMethod && press.force == 0) { //released
-						stoppedActivator = YES; //THIS MEANS NO LONG PRESS
+	      if (press.type == activationMethod && press.force == 1) { //pressed
+					buttonPressCountActivator ++;
+					stoppedActivator = NO; //this is for each individual press
+					if (buttonPressCountActivator == 1) {
+						//This is a 0.4 second delay because it takes a bit to activate Accessibility shortcut
+						longPressTimer = [NSTimer scheduledTimerWithTimeInterval:0.4 target:self selector:@selector(activateAll) userInfo:nil repeats:NO];
 					}
+				} else if (press.type == activationMethod && press.force == 0) { //released
+					stoppedActivator = YES; //THIS MEANS NO LONG PRESS
 
 
 //Volume Up method
@@ -236,6 +211,7 @@ void resetVariables() {
 }
 
 ///////////Creating new methods so other things could possibly use these
+
 //main activators
 %new
 -(void)activateAll {
