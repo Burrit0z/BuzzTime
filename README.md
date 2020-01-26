@@ -18,7 +18,7 @@ For example, 7 would be vibrated as a long vibration,
  followed by 2 short vibrations. A zero, however, would be 2 long vibrations,
  so it does not get confused with the pauses between digits.
 
-# QUESTIONS AND ANSWERS
+# Questions and Answers
 
 ## Q:If I set my activation gesture to the side button, what about Siri, Apple Pay, and Accessibility shortcuts?
 

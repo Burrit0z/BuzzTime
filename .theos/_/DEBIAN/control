@@ -6,5 +6,5 @@ Description: Ever wanted to check the time, but either (a) don't have a watch, o
 Maintainer: burrit0z
 Author: burrit0z
 Section: Tweaks
-Version: 1.0~rc1-4+debug
-Installed-Size: 400
+Version: 1.0
+Installed-Size: 396
