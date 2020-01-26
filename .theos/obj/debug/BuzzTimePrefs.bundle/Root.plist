@@ -30,7 +30,7 @@
 			<key>subtitle</key>
 			<string>I recommend you read this first.</string>
 			<key>url</key>
-			<string>https://github.com/Burrit0z/BuzzTime/README.md</string>
+			<string>https://https://raw.githubusercontent.com/Burrit0z/BuzzTime/master/guide.txt</string>
 		</dict>
 		<dict>
 			<key>cellClass</key>
